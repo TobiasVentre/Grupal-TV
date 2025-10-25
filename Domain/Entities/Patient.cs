@@ -8,7 +8,7 @@ namespace Domain.Entities
 {
     public class Patient
     {
-        public int PatientId { get; set; }
+        public long PatientId { get; set; }
         public int Dni { get; set; }
         public string? Adress { get; set; }
         public DateTime DateOfBirth { get; set; }
@@ -16,7 +16,7 @@ namespace Domain.Entities
         public int MembershipNumber { get; set; }
 
         // Relación con usuario
-        public int UserId { get; set; }
+        public long UserId { get; set; }
         public User? UserNavigation { get; set; }
     }
 }

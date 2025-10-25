@@ -8,12 +8,12 @@ namespace Domain.Entities
 {
     public class Doctor
     {
-        public int DoctorId { get; set; }
+        public long DoctorId { get; set; }
         public string? Specialty { get; set; }
         public string? LicenseNumber { get; set; } // matrícula
 
         // Relación con usuario
-        public int UserId { get; set; }
+        public long UserId { get; set; }
         public User? UserNavigation { get; set; }
 
     }
