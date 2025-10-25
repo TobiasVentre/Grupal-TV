@@ -1,20 +1,15 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\Noxie\\Desktop\\CuidarMed\u002B\\CuidarMed\u002B\\",
-  "Documents": [
-    {
-      "AbsoluteMoniker": "D:0:0:{4E45CF42-4A0B-45F8-B4DC-8388826C9F1A}|CuidarMed\u002B\\CuidarMed\u002B.csproj|c:\\users\\noxie\\desktop\\cuidarmed\u002B\\cuidarmed\u002B\\cuidarmed\u002B\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{4E45CF42-4A0B-45F8-B4DC-8388826C9F1A}|CuidarMed\u002B\\CuidarMed\u002B.csproj|solutionrelative:cuidarmed\u002B\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
-    }
-  ],
+  "WorkspaceRootPath": "C:\\Users\\Noxie\\Desktop\\CuidarMed\u002B\\CuidarMed\\",
+  "Documents": [],
   "DocumentGroupContainers": [
     {
-      "Orientation": 1,
+      "Orientation": 0,
       "VerticalTabListWidth": 256,
       "DocumentGroups": [
         {
-          "DockedHeight": 313,
-          "SelectedChildIndex": 3,
+          "DockedWidth": 200,
+          "SelectedChildIndex": -1,
           "Children": [
             {
               "$type": "Bookmark",
@@ -27,24 +22,11 @@
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "launchSettings.json",
-              "DocumentMoniker": "C:\\Users\\Noxie\\Desktop\\CuidarMed\u002B\\CuidarMed\u002B\\CuidarMed\u002B\\Properties\\launchSettings.json",
-              "RelativeDocumentMoniker": "CuidarMed\u002B\\Properties\\launchSettings.json",
-              "ToolTip": "C:\\Users\\Noxie\\Desktop\\CuidarMed\u002B\\CuidarMed\u002B\\CuidarMed\u002B\\Properties\\launchSettings.json",
-              "RelativeToolTip": "CuidarMed\u002B\\Properties\\launchSettings.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABkAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-10-22T18:13:41.823Z",
-              "EditorCaption": ""
             }
           ]
         },
         {
-          "DockedHeight": 468,
+          "DockedWidth": 1653,
           "SelectedChildIndex": -1,
           "Children": [
             {
@@ -62,7 +44,7 @@
           ]
         },
         {
-          "DockedHeight": 132,
+          "DockedWidth": 1629,
           "SelectedChildIndex": -1,
           "Children": [
             {
@@ -76,7 +58,7 @@
           ]
         },
         {
-          "DockedHeight": 76,
+          "DockedWidth": 1669,
           "SelectedChildIndex": -1,
           "Children": [
             {
