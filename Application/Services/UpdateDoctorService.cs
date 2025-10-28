@@ -19,32 +19,38 @@ namespace Application.Services
             _doctorQuery = doctorQuery;
         }
 
-        public async Task<DoctorResponse> UpdateDoctorAsync(UpdateDoctorRequest request)
+        public async Task<UpdateDoctorResponse> UpdateDoctorAsync(long id, UpdateDoctorRequest request)
         {
             // Buscar el doctor existente
-            var doctor = await _doctorQuery.GetByIdAsync(request.DoctorId);
+            var doctor = await _doctorQuery.GetByIdAsync(id);
             if (doctor == null)
             {
                 throw new Exception("Doctor no encontrado");
             }
 
             // Actualizar solo los campos que no sean null
-            if (!string.IsNullOrEmpty(request.Specialty))
-                doctor.Specialty = request.Specialty;
+            if (!string.IsNullOrEmpty(request.FirstName))
+                doctor.FirstName = request.FirstName;
+
+            if (!string.IsNullOrEmpty(request.LastName))
+                doctor.LastName = request.LastName;
 
             if (!string.IsNullOrEmpty(request.LicenseNumber))
                 doctor.LicenseNumber = request.LicenseNumber;
+
+            if (!string.IsNullOrEmpty(request.Biography))
+                doctor.Biography = request.Biography;
 
             // Guardar cambios
             var updatedDoctor = await _doctorCommand.UpdateAsync(doctor);
 
             // Retornar respuesta
-            return new DoctorResponse
+            return new UpdateDoctorResponse
             {
-                DoctorId = (int)updatedDoctor.DoctorId,
-                Specialty = updatedDoctor.Specialty,
+                FirstName = updatedDoctor.FirstName,
+                LastName = updatedDoctor.LastName,
                 LicenseNumber = updatedDoctor.LicenseNumber,
-                UserId = (int)updatedDoctor.UserId
+                Biography = updatedDoctor.Biography
             };
         }
     }

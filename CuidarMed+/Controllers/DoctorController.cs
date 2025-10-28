@@ -85,10 +85,7 @@ namespace CuidarMed_.Controllers
         {
             try
             {
-                if (id != request.DoctorId)
-                    return BadRequest(new { message = "El ID de la URL no coincide con el ID del cuerpo" });
-
-                var result = await _updateDoctorService.UpdateDoctorAsync(request);
+                var result = await _updateDoctorService.UpdateDoctorAsync(id, request);
                 return Ok(result);
             }
             catch (Exception ex)

@@ -1,28 +1,16 @@
 ﻿using Application.DTOs.Doctors;
 using Application.Interfaces;
 using Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Application.Services
 {
     public class CreateDoctorService : ICreateDoctorService
     {
         private readonly IDoctorCommand _doctorCommand;
-        private readonly IDoctorQuery _doctorQuery;
-        private readonly IUserQuery _userQuery;
 
-        public CreateDoctorService(
-            IDoctorCommand doctorCommand,
-            IDoctorQuery doctorQuery,
-            IUserQuery userQuery)
+        public CreateDoctorService(IDoctorCommand doctorCommand)
         {
             _doctorCommand = doctorCommand;
-            _doctorQuery = doctorQuery;
-            _userQuery = userQuery;
         }
 
         public async Task<DoctorResponse> CreateDoctorAsync(CreateDoctorRequest request)
@@ -30,9 +18,10 @@ namespace Application.Services
             // Crear la entidad Doctor
             var doctor = new Doctor
             {
-                Specialty = request.Specialty,
+                FirstName = request.FirstName,
+                LastName = request.LastName,
                 LicenseNumber = request.LicenseNumber,
-                UserId = request.UserId
+                Biography = request.Biography
             };
 
             // Guardar en la base de datos
@@ -41,10 +30,11 @@ namespace Application.Services
             // Retornar la respuesta
             return new DoctorResponse
             {
-                DoctorId = (int)doctor.DoctorId,
-                Specialty = doctor.Specialty,
+                DoctorId = doctor.DoctorId,
+                FirstName = doctor.FirstName,
+                LastName = doctor.LastName,
                 LicenseNumber = doctor.LicenseNumber,
-                UserId = (int)doctor.UserId
+                Biography = doctor.Biography
             };
         }
     }

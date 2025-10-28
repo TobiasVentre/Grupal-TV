@@ -22,8 +22,10 @@ namespace Infraestructure.Queries
         public async Task<Doctor?> GetByIdAsync(long id)
         {
             return await _context.Doctors
-                .Include(d => d.UserNavigation)
+                .Include(d => d.DoctorSpecialties)
+                    .ThenInclude(ds => ds.Specialty)
                 .FirstOrDefaultAsync(d => d.DoctorId == id);
+            
         }
 
         public async Task<List<Doctor>> GetAllAsync()
@@ -35,7 +37,8 @@ namespace Infraestructure.Queries
             //return await query.ToListAsync();
 
             return await _context.Doctors
-                .Include(d => d.UserNavigation)
+                .Include(d => d.DoctorSpecialties)
+                    .ThenInclude(ds => ds.Specialty)
                 .ToListAsync();
         }
     }

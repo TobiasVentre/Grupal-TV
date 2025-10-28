@@ -1,10 +1,5 @@
 ﻿using Application.DTOs.Doctors;
 using Application.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Application.Services
 {
@@ -27,9 +22,11 @@ namespace Application.Services
             return new DoctorResponse
             {
                 DoctorId = (int)doctor.DoctorId,
-                Specialty = doctor.Specialty,
+                FirstName = doctor.FirstName,
+                LastName = doctor.LastName,
                 LicenseNumber = doctor.LicenseNumber,
-                UserId = (int)doctor.UserId
+                Biography = doctor.Biography
+
             };
         }
 
@@ -39,10 +36,11 @@ namespace Application.Services
 
             return doctors.Select(d => new DoctorResponse
             {
-                DoctorId = (int)d.DoctorId,
-                Specialty = d.Specialty,
+                DoctorId = d.DoctorId,
+                FirstName = d.FirstName,
+                LastName = d.LastName,
                 LicenseNumber = d.LicenseNumber,
-                UserId = (int)d.UserId
+                Biography = d.Biography
             }).ToList();
         }
     }

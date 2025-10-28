@@ -29,11 +29,9 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 );
 
 // ========== QUERIES (lectura) - Infrastructure ==========
-builder.Services.AddScoped<IUserQuery, UserQuery>();
 builder.Services.AddScoped<IDoctorQuery, DoctorQuery>();
 
 // ========== COMMANDS (escritura) - Infrastructure ==========
-builder.Services.AddScoped<IUserCommand, UserCommand>();
 builder.Services.AddScoped<IDoctorCommand, DoctorCommand>();
 
 // ========== SERVICES - Doctors ==========

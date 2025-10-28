@@ -30,21 +30,26 @@ namespace Infraestructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("DoctorId"));
 
-                    b.Property<string>("LicenseNumber")
+                    b.Property<string>("Biography")
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<string>("Specialty")
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
-                    b.Property<long>("UserId")
-                        .HasColumnType("bigint");
+                    b.Property<string>("LicenseNumber")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.HasKey("DoctorId");
-
-                    b.HasIndex("UserId")
-                        .IsUnique();
 
                     b.ToTable("Doctor", (string)null);
 
@@ -52,16 +57,89 @@ namespace Infraestructure.Migrations
                         new
                         {
                             DoctorId = 1L,
-                            LicenseNumber = "ABC123",
-                            Specialty = "Cardiology",
-                            UserId = 4L
+                            Biography = "Especialista en cardiología con 10 años de experiencia.",
+                            FirstName = "Juan",
+                            LastName = "Pérez",
+                            LicenseNumber = "ABC123"
                         },
                         new
                         {
                             DoctorId = 2L,
-                            LicenseNumber = "DEF456",
-                            Specialty = "Dermatology",
-                            UserId = 5L
+                            Biography = "Dermatóloga dedicada al cuidado de la piel.",
+                            FirstName = "María",
+                            LastName = "Gómez",
+                            LicenseNumber = "DEF456"
+                        },
+                        new
+                        {
+                            DoctorId = 3L,
+                            Biography = "Pediatra comprometido con la salud infantil.",
+                            FirstName = "Carlos",
+                            LastName = "López",
+                            LicenseNumber = "GHI789"
+                        },
+                        new
+                        {
+                            DoctorId = 4L,
+                            Biography = "Ginecóloga especializada en salud femenina.",
+                            FirstName = "Ana",
+                            LastName = "Martínez",
+                            LicenseNumber = "JKL012"
+                        },
+                        new
+                        {
+                            DoctorId = 5L,
+                            Biography = "Ortopedista con amplia experiencia en lesiones deportivas.",
+                            FirstName = "Luis",
+                            LastName = "Rodríguez",
+                            LicenseNumber = "MNO345"
+                        });
+                });
+
+            modelBuilder.Entity("Domain.Entities.DoctorSpecialty", b =>
+                {
+                    b.Property<long>("DoctorId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("SpecialtyId")
+                        .HasColumnType("bigint");
+
+                    b.HasKey("DoctorId", "SpecialtyId");
+
+                    b.HasIndex("SpecialtyId");
+
+                    b.ToTable("DoctorSpecialty", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            DoctorId = 1L,
+                            SpecialtyId = 1L
+                        },
+                        new
+                        {
+                            DoctorId = 2L,
+                            SpecialtyId = 2L
+                        },
+                        new
+                        {
+                            DoctorId = 3L,
+                            SpecialtyId = 3L
+                        },
+                        new
+                        {
+                            DoctorId = 4L,
+                            SpecialtyId = 4L
+                        },
+                        new
+                        {
+                            DoctorId = 5L,
+                            SpecialtyId = 5L
+                        },
+                        new
+                        {
+                            DoctorId = 1L,
+                            SpecialtyId = 3L
                         });
                 });
 
@@ -77,26 +155,32 @@ namespace Infraestructure.Migrations
                         .HasMaxLength(200)
                         .HasColumnType("nvarchar(200)");
 
-                    b.Property<DateTime>("DateOfBirth")
-                        .HasColumnType("datetime2");
+                    b.Property<DateOnly>("DateOfBirth")
+                        .HasColumnType("date");
 
                     b.Property<int>("Dni")
                         .HasColumnType("int");
 
                     b.Property<string>("HealthPlan")
+                        .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<int>("MembershipNumber")
-                        .HasColumnType("int");
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
-                    b.Property<long>("UserId")
-                        .HasColumnType("bigint");
+                    b.Property<string>("MembershipNumber")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.HasKey("PatientId");
-
-                    b.HasIndex("UserId")
-                        .IsUnique();
 
                     b.ToTable("Patient", (string)null);
 
@@ -105,142 +189,140 @@ namespace Infraestructure.Migrations
                         {
                             PatientId = 1L,
                             Adress = "Calle Falsa 123",
-                            DateOfBirth = new DateTime(1990, 5, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DateOfBirth = new DateOnly(1985, 5, 20),
                             Dni = 12345678,
                             HealthPlan = "Plan A",
-                            MembershipNumber = 1001,
-                            UserId = 1L
+                            LastName = "García",
+                            MembershipNumber = "A12345",
+                            Name = "Pedro"
                         },
                         new
                         {
                             PatientId = 2L,
-                            Adress = "Av. Siempre Viva 456",
-                            DateOfBirth = new DateTime(1985, 10, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Adress = "Avenida Siempre Viva 742",
+                            DateOfBirth = new DateOnly(1990, 8, 15),
                             Dni = 87654321,
                             HealthPlan = "Plan B",
-                            MembershipNumber = 1002,
-                            UserId = 2L
+                            LastName = "López",
+                            MembershipNumber = "B67890",
+                            Name = "María"
                         },
                         new
                         {
                             PatientId = 3L,
-                            Adress = "Calle Luna 789",
-                            DateOfBirth = new DateTime(2000, 1, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Adress = "Boulevard Central 456",
+                            DateOfBirth = new DateOnly(1978, 12, 5),
                             Dni = 11223344,
                             HealthPlan = "Plan C",
-                            MembershipNumber = 1003,
-                            UserId = 3L
+                            LastName = "Martínez",
+                            MembershipNumber = "C11223",
+                            Name = "Juan"
+                        },
+                        new
+                        {
+                            PatientId = 4L,
+                            Adress = "Calle del Sol 789",
+                            DateOfBirth = new DateOnly(2000, 3, 30),
+                            Dni = 44332211,
+                            HealthPlan = "Plan A",
+                            LastName = "Sánchez",
+                            MembershipNumber = "A44556",
+                            Name = "Ana"
+                        },
+                        new
+                        {
+                            PatientId = 5L,
+                            Adress = "Avenida de la Luna 321",
+                            DateOfBirth = new DateOnly(1995, 7, 10),
+                            Dni = 55667788,
+                            HealthPlan = "Plan B",
+                            LastName = "Fernández",
+                            MembershipNumber = "B77889",
+                            Name = "Luis"
                         });
                 });
 
-            modelBuilder.Entity("Domain.Entities.User", b =>
+            modelBuilder.Entity("Domain.Entities.Specialty", b =>
                 {
-                    b.Property<long>("Id")
+                    b.Property<long>("SpecialtyId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bigint");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("SpecialtyId"));
 
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                    b.Property<string>("Description")
+                        .HasMaxLength(250)
+                        .HasColumnType("nvarchar(250)");
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<string>("Password")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                    b.HasKey("SpecialtyId");
 
-                    b.Property<int>("Rol")
-                        .HasColumnType("int");
-
-                    b.Property<int>("UserRol")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("User", (string)null);
+                    b.ToTable("Specialty", (string)null);
 
                     b.HasData(
                         new
                         {
-                            Id = 1L,
-                            Email = "Mariano.paciente@test.com",
-                            Name = "Mariano Perez",
-                            Password = "1234",
-                            Rol = 1,
-                            UserRol = 0
+                            SpecialtyId = 1L,
+                            Description = "Especialista enfocado en la salud cardiovascuilar.",
+                            Name = "Cardiology"
                         },
                         new
                         {
-                            Id = 2L,
-                            Email = "maria.paciente@test.com",
-                            Name = "Maria Lopez",
-                            Password = "1234",
-                            Rol = 1,
-                            UserRol = 0
+                            SpecialtyId = 2L,
+                            Description = "Especialista en el cuidado de la piel.",
+                            Name = "Dermatology"
                         },
                         new
                         {
-                            Id = 3L,
-                            Email = "carlos.paciente@test.com",
-                            Name = "Carlos Ruiz",
-                            Password = "1234",
-                            Rol = 1,
-                            UserRol = 0
+                            SpecialtyId = 3L,
+                            Description = "Especialista en la salud infantil.",
+                            Name = "Pediatrics"
                         },
                         new
                         {
-                            Id = 4L,
-                            Email = "ana.medico@test.com",
-                            Name = "Dr. Ana Gomez",
-                            Password = "1234",
-                            Rol = 2,
-                            UserRol = 0
+                            SpecialtyId = 4L,
+                            Description = "Especialista en la salud femenina.",
+                            Name = "Gynecology"
                         },
                         new
                         {
-                            Id = 5L,
-                            Email = "juan.medico@test.com",
-                            Name = "Dr. Juan Martinez",
-                            Password = "1234",
-                            Rol = 2,
-                            UserRol = 0
+                            SpecialtyId = 5L,
+                            Description = "Especialista en el sistema musculoesquelético.",
+                            Name = "Orthopedics"
                         });
+                });
+
+            modelBuilder.Entity("Domain.Entities.DoctorSpecialty", b =>
+                {
+                    b.HasOne("Domain.Entities.Doctor", "Doctor")
+                        .WithMany("DoctorSpecialties")
+                        .HasForeignKey("DoctorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Domain.Entities.Specialty", "Specialty")
+                        .WithMany("DoctorSpecialties")
+                        .HasForeignKey("SpecialtyId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Doctor");
+
+                    b.Navigation("Specialty");
                 });
 
             modelBuilder.Entity("Domain.Entities.Doctor", b =>
                 {
-                    b.HasOne("Domain.Entities.User", "UserNavigation")
-                        .WithOne("Doctor")
-                        .HasForeignKey("Domain.Entities.Doctor", "UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("UserNavigation");
+                    b.Navigation("DoctorSpecialties");
                 });
 
-            modelBuilder.Entity("Domain.Entities.Patient", b =>
+            modelBuilder.Entity("Domain.Entities.Specialty", b =>
                 {
-                    b.HasOne("Domain.Entities.User", "UserNavigation")
-                        .WithOne("Patient")
-                        .HasForeignKey("Domain.Entities.Patient", "UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("UserNavigation");
-                });
-
-            modelBuilder.Entity("Domain.Entities.User", b =>
-                {
-                    b.Navigation("Doctor");
-
-                    b.Navigation("Patient");
+                    b.Navigation("DoctorSpecialties");
                 });
 #pragma warning restore 612, 618
         }

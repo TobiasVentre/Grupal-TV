@@ -1,11 +1,6 @@
 ﻿using Application.Interfaces;
 using Domain.Entities;
 using Infraestructure.Persistence;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Infraestructure.Command
 {
@@ -22,7 +17,6 @@ namespace Infraestructure.Command
         {
             _context.Doctors.Add(doctor);
             await _context.SaveChangesAsync();
-            await _context.Entry(doctor).Reference(d => d.UserNavigation).LoadAsync();
             return doctor;
         }
 
