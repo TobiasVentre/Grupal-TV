@@ -24,11 +24,11 @@ namespace Infraestructure.Migrations
 
             modelBuilder.Entity("Domain.Entities.Doctor", b =>
                 {
-                    b.Property<int>("DoctorId")
+                    b.Property<long>("DoctorId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("bigint");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("DoctorId"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("DoctorId"));
 
                     b.Property<string>("LicenseNumber")
                         .HasMaxLength(50)
@@ -38,8 +38,8 @@ namespace Infraestructure.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
+                    b.Property<long>("UserId")
+                        .HasColumnType("bigint");
 
                     b.HasKey("DoctorId");
 
@@ -51,27 +51,27 @@ namespace Infraestructure.Migrations
                     b.HasData(
                         new
                         {
-                            DoctorId = 1,
+                            DoctorId = 1L,
                             LicenseNumber = "ABC123",
                             Specialty = "Cardiology",
-                            UserId = 4
+                            UserId = 4L
                         },
                         new
                         {
-                            DoctorId = 2,
+                            DoctorId = 2L,
                             LicenseNumber = "DEF456",
                             Specialty = "Dermatology",
-                            UserId = 5
+                            UserId = 5L
                         });
                 });
 
             modelBuilder.Entity("Domain.Entities.Patient", b =>
                 {
-                    b.Property<int>("PatientId")
+                    b.Property<long>("PatientId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("bigint");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PatientId"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("PatientId"));
 
                     b.Property<string>("Adress")
                         .HasMaxLength(200)
@@ -90,8 +90,8 @@ namespace Infraestructure.Migrations
                     b.Property<int>("MembershipNumber")
                         .HasColumnType("int");
 
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
+                    b.Property<long>("UserId")
+                        .HasColumnType("bigint");
 
                     b.HasKey("PatientId");
 
@@ -103,43 +103,43 @@ namespace Infraestructure.Migrations
                     b.HasData(
                         new
                         {
-                            PatientId = 1,
+                            PatientId = 1L,
                             Adress = "Calle Falsa 123",
                             DateOfBirth = new DateTime(1990, 5, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Dni = 12345678,
                             HealthPlan = "Plan A",
                             MembershipNumber = 1001,
-                            UserId = 1
+                            UserId = 1L
                         },
                         new
                         {
-                            PatientId = 2,
+                            PatientId = 2L,
                             Adress = "Av. Siempre Viva 456",
                             DateOfBirth = new DateTime(1985, 10, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Dni = 87654321,
                             HealthPlan = "Plan B",
                             MembershipNumber = 1002,
-                            UserId = 2
+                            UserId = 2L
                         },
                         new
                         {
-                            PatientId = 3,
+                            PatientId = 3L,
                             Adress = "Calle Luna 789",
                             DateOfBirth = new DateTime(2000, 1, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Dni = 11223344,
                             HealthPlan = "Plan C",
                             MembershipNumber = 1003,
-                            UserId = 3
+                            UserId = 3L
                         });
                 });
 
             modelBuilder.Entity("Domain.Entities.User", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("bigint");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
 
                     b.Property<string>("Email")
                         .IsRequired()
@@ -169,7 +169,7 @@ namespace Infraestructure.Migrations
                     b.HasData(
                         new
                         {
-                            Id = 1,
+                            Id = 1L,
                             Email = "Mariano.paciente@test.com",
                             Name = "Mariano Perez",
                             Password = "1234",
@@ -178,7 +178,7 @@ namespace Infraestructure.Migrations
                         },
                         new
                         {
-                            Id = 2,
+                            Id = 2L,
                             Email = "maria.paciente@test.com",
                             Name = "Maria Lopez",
                             Password = "1234",
@@ -187,7 +187,7 @@ namespace Infraestructure.Migrations
                         },
                         new
                         {
-                            Id = 3,
+                            Id = 3L,
                             Email = "carlos.paciente@test.com",
                             Name = "Carlos Ruiz",
                             Password = "1234",
@@ -196,7 +196,7 @@ namespace Infraestructure.Migrations
                         },
                         new
                         {
-                            Id = 4,
+                            Id = 4L,
                             Email = "ana.medico@test.com",
                             Name = "Dr. Ana Gomez",
                             Password = "1234",
@@ -205,7 +205,7 @@ namespace Infraestructure.Migrations
                         },
                         new
                         {
-                            Id = 5,
+                            Id = 5L,
                             Email = "juan.medico@test.com",
                             Name = "Dr. Juan Martinez",
                             Password = "1234",

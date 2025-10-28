@@ -1,4 +1,8 @@
+using Application.Interfaces;
+using Application.Services;
+using Infraestructure.Command;
 using Infraestructure.Persistence;
+using Infraestructure.Queries;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 
@@ -23,6 +27,19 @@ if (string.IsNullOrEmpty(connectionString))
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(connectionString) // Pasa la cadena LEÍDA aquí
 );
+
+// ========== QUERIES (lectura) - Infrastructure ==========
+builder.Services.AddScoped<IUserQuery, UserQuery>();
+builder.Services.AddScoped<IDoctorQuery, DoctorQuery>();
+
+// ========== COMMANDS (escritura) - Infrastructure ==========
+builder.Services.AddScoped<IUserCommand, UserCommand>();
+builder.Services.AddScoped<IDoctorCommand, DoctorCommand>();
+
+// ========== SERVICES - Doctors ==========
+builder.Services.AddScoped<ICreateDoctorService, CreateDoctorService>();
+builder.Services.AddScoped<ISearchDoctorService, SearchDoctorService>();
+builder.Services.AddScoped<IUpdateDoctorService, UpdateDoctorService>();
 
 var app = builder.Build();
 
